@@ -15,22 +15,20 @@ Her dosya için kullanılacak olan şablon dosyası ile tamamen özgün bir yap�
 fullstory.tpl de çalıştırabileceğiniz kullanım örnekleri :
 --------------
 Fullstory'ye eklenen eklentileri göster ve fullstory'den kaldır
-[Ekran Görüntüsü]:http://dle.net.tr/uploads/posts/2014-07/1405454215_ignore_yes.png
+[Ekran Görüntüsü 1]
 ~~~
 {attach story="full" template="attachment" ignore="yes" order="id" by="desc"}
 ~~~
 
 
 Fullstory'ye eklenen eklentileri göster ve fullstory'den kaldırma
-[Ekran Görüntüsü]:http://dle.net.tr/uploads/posts/2014-07/1405454170_ignore_no.png
+[Ekran Görüntüsü 2]
 ~~~
 {attach story="full" template="attachment" ignore="no" order="id" by="desc"}
 ~~~
 
 
 files İlave alanından oku
-
-Ekran Görüntüsü
 ~~~
 {attach xfield="files" template="attachment" order="id" by="desc"}
 ~~~
@@ -59,3 +57,6 @@ attachment.tpl Kullanılabilir etiketler:
 * {extension} ( Dosyanın uzantısı )
 
 Modül Sayfası : http://dle.net.tr/dle-modul/17-custom-attachments.html
+
+[Ekran Görüntüsü 1]:http://dle.net.tr/uploads/posts/2014-07/1405454215_ignore_yes.png
+[Ekran Görüntüsü 2]:http://dle.net.tr/uploads/posts/2014-07/1405454170_ignore_no.png
