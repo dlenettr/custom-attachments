@@ -1,14 +1,11 @@
 Custom Attachments v1.1
 --------------
-
 * Yapımcı: Mehmet Hanoğlu ( dle.net.tr )
 * Tarih : 15.07.2014
 * Lisans : MIT
 * DLE : Yalnızca 10.2
 
-
 Sistemde var olan {custom..} tagı gibi kullanıma sahip olan "Custom Attachments" eklentisi ile makalenize eklemiş olduğunuz dosyaları kendinizin belirlediği bir şablon (.tpl) dosyası yardımıyla makalenizde listeleyebilirsiniz. Eğer sitenizde her makalenize birden çok dosya ekliyorsanız ve bu dosyaları düzenli bir şekilde sunmak istiyorsanız. Bu eklenti ile tüm bunları yapabilirsiniz.
-
 
 Yeni sürümde hem ilave alan desteği hemde short/full story desteği bulunmaktadır. Herhangi bir alana eklediğiniz eklentileri dilediğiniz gibi şablon dosyası yardımıyla gösterebilirsiniz. Custom mantığı ile çalışmaktadır.
 Alana girilen [attachment=1], .... kodlarını okuyarak bu eklenti ID lerinin veritabanından karşılığını bulup belirlediğiniz şablon dosyasındaki  etiketlere göre listeler.
@@ -58,5 +55,6 @@ attachment.tpl Kullanılabilir etiketler:
 * {count} ( Dosyanın indirilme sayısı )
 * {onserver} ( Dosyanın sunucudaki adı ) 
 * {size} ( Dosyanın boyutu )
+* {extension} ( Dosyanın uzantısı )
 
 Modül Sayfası : http://dle.net.tr/dle-modul/17-custom-attachments.html
