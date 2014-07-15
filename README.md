@@ -15,20 +15,21 @@ Her dosya için kullanılacak olan şablon dosyası ile tamamen özgün bir yap�
 fullstory.tpl de çalıştırabileceğiniz kullanım örnekleri :
 --------------
 Fullstory'ye eklenen eklentileri göster ve fullstory'den kaldır
-Ekran Görüntüsü
+[Ekran Görüntüsü]:http://dle.net.tr/uploads/posts/2014-07/1405454215_ignore_yes.png
 ~~~
 {attach story="full" template="attachment" ignore="yes" order="id" by="desc"}
 ~~~
 
 
 Fullstory'ye eklenen eklentileri göster ve fullstory'den kaldırma
-Ekran Görüntüsü
+[Ekran Görüntüsü]:http://dle.net.tr/uploads/posts/2014-07/1405454170_ignore_no.png
 ~~~
 {attach story="full" template="attachment" ignore="no" order="id" by="desc"}
 ~~~
 
 
-file İlave alanından oku
+files İlave alanından oku
+
 Ekran Görüntüsü
 ~~~
 {attach xfield="files" template="attachment" order="id" by="desc"}
