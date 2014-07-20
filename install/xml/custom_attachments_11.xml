@@ -26,7 +26,7 @@
 				} else if ( ! empty( $attach['story'] ) ) { $source = $row[ $attach['story'] . "_story" ]; }
 				if ( ! empty( $source ) ) {
 					preg_match_all( "#\[attachment\=([0-9]+)(:.+?)*\]#", $source, $attachments );
-					if ( count( $attachments ) > 0 ) {
+					if ( count( $attachments[0] ) > 0 ) {
 						if ( ! empty( $attach['story'] ) AND $attach['ignore'] == "yes" ) { foreach( $attachments[0] as $_attach ) { $tpl->set( $_attach, "" ); } }
 						$attachments = implode( ",", $attachments[1] );
 						$tpl4 = new dle_template(); $tpl4->dir = TEMPLATE_DIR;
