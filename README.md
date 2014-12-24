@@ -1,9 +1,9 @@
-Custom Attachments v1.1
+Custom Attachments v1.2
 --------------
 * Yapımcı: Mehmet Hanoğlu ( dle.net.tr )
 * Tarih : 15.07.2014
 * Lisans : MIT
-* DLE : Yalnızca 10.2
+* DLE : Yalnızca 10.2, 10.3
 
 Sistemde var olan {custom..} tagı gibi kullanıma sahip olan "Custom Attachments" eklentisi ile makalenize eklemiş olduğunuz dosyaları kendinizin belirlediği bir şablon (.tpl) dosyası yardımıyla makalenizde listeleyebilirsiniz. Eğer sitenizde her makalenize birden çok dosya ekliyorsanız ve bu dosyaları düzenli bir şekilde sunmak istiyorsanız. Bu eklenti ile tüm bunları yapabilirsiniz.
 
@@ -34,6 +34,11 @@ files İlave alanından oku
 ~~~
 
 
+Sadece seçilen uzantıları listele
+~~~
+{attach xfield="files" template="attachment" ext="doc,pdf" order="id" by="desc"}
+~~~
+
 Kullanılabilir belirteçler
 --------------
 * xfield="files" ( files ilave alanındaki verileri okur )
@@ -43,6 +48,8 @@ Kullanılabilir belirteçler
 * source="full" ( fullstorydeki eklentileri okur )
 * source="short" ( shortstorydeki eklentileri okur )
 * ignore="yes" ( yes|no - Eğer source belirteci kullanılmışsa aktif olur, eklentilerin kaynaktan kaldırmasını sağlar )
+* ext="zip" ( Sadece zip dosyalarını çeker. Daha fazla uzantı için virgül ile ayırarak giriniz. )
+* ext="doc,pdf" ( Doc ve Pdf dosyalarını çeker )
 
 attachment.tpl Kullanılabilir etiketler:
 --------------
