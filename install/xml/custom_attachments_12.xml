@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modification>
 	<id>Custom Attachments</id>
-	<version>1.1</version>
+	<version>1.2</version>
 	<vqmver>2.4.1</vqmver>
 	<author>MaRZoCHi</author>
 	<file name="engine/modules/show.full.php">
@@ -9,7 +9,7 @@
 			<ignoreif><![CDATA[preg_match( "#\{attach\s(.*?)\}#", $tpl->copy_template, $matches ); $param_str = $matches[1];]]></ignoreif>
 			<search position="before" index="2"><![CDATA[$category_id = $row['category'];]]></search>
 			<add><![CDATA[
-		// Custom Attachments v1.1
+		// Custom Attachments v1.2
 		if( strpos( $tpl->copy_template, "{attach " ) !== false ) {
 			preg_match( "#\{attach\s(.*?)\}#", $tpl->copy_template, $matches ); $param_str = $matches[1];
 			$attach = array( "order" => "date", "by" => "DESC" );
@@ -19,6 +19,7 @@
 			if( preg_match( "#template=['\"](.+?)['\"]#i", $param_str, $match ) ) { $attach['template'] = $db->safesql( $match[1] ); }
 			if( preg_match( "#order=['\"](.+?)['\"]#i", $param_str, $match ) ) { $attach['order'] = ( empty( $match[1] ) ) ? "date" : $db->safesql( $match[1] ); }
 			if( preg_match( "#by=['\"](.+?)['\"]#i", $param_str, $match ) ) { $attach['by'] = ( empty( $match[1] ) ) ? "DESC" : $db->safesql( $match[1] ); }
+			if( preg_match( "#ext=['\"](.+?)['\"]#i", $param_str, $match ) ) { $attach['ext'] = explode( ",", $db->safesql( $match[1] ) ); }
 			if ( ! empty( $attach['template'] ) AND ( ! empty( $attach['xfield'] ) OR ! empty( $attach['story'] ) ) ) {
 				if ( ! empty( $attach['xfield'] ) ) {
 					if ( ! isset( $xfieldsdata ) ) $xfieldsdata = xfieldsdataload( $row['xfields'] );
@@ -26,29 +27,32 @@
 				} else if ( ! empty( $attach['story'] ) ) { $source = $row[ $attach['story'] . "_story" ]; }
 				if ( ! empty( $source ) ) {
 					preg_match_all( "#\[attachment\=([0-9]+)(:.+?)*\]#", $source, $attachments );
-					if ( count( $attachments[0] ) > 0 ) {
+					if ( count( $attachments ) > 0 ) {
 						if ( ! empty( $attach['story'] ) AND $attach['ignore'] == "yes" ) { foreach( $attachments[0] as $_attach ) { $tpl->set( $_attach, "" ); } }
 						$attachments = implode( ",", $attachments[1] );
 						$tpl4 = new dle_template(); $tpl4->dir = TEMPLATE_DIR;
 						$tpl4->load_template( "{$attach['template']}.tpl" ); $_found = 0;
 						$db->query("SELECT * FROM " . PREFIX . "_files WHERE id IN ({$attachments}) ORDER BY {$attach['order']} {$attach['by']}");
 						while( $file = $db->get_row() ) {
-							$_found++;
-							$tpl4->set( "{id}", $file['id'] );
-							$tpl4->set( "{url}", $config['http_home_url'] . "engine/download.php?id=" . $file['id'] );
-							$tpl4->set( "{seo-url}", $config['http_home_url'] . "indir/" . $file['id'] . "-" . $file['name'] );
-							$tpl4->set( "{size}", strtoupper( formatsize( @filesize( ROOT_DIR . '/uploads/files/' . $file['onserver'] ) ) ) );
-							// htaccess: RewriteRule ^indir/([0-9]+)-(.*)$ engine/download.php?id=$1 [L]
 							$_tmp = explode( ".", $file['name'] );
-							$tpl4->set( "{extension}", end( $_tmp ) ); unset( $_tmp );
-							$tpl4->set( "{name}", $file['name'] );
-							$tpl4->set( "{onserver}", $file['onserver'] );
-							$tpl4->set( "{author}", $file['author'] );
-							$tpl4->set( "{date}", date( "d.m.Y", $file['date'] ) );
-							$news_date = $file['date'];
-							$tpl4->copy_template = preg_replace_callback( "#\{date=(.+?)\}#i", "formdate", $tpl4->copy_template );
-							$tpl4->set( "{count}", $file['dcount'] );
-							$tpl4->compile( $attach['template'] );
+							if ( in_array( end( $_tmp ), $attach['ext'] ) ) {
+								$_found++;
+								$tpl4->set( "{id}", $file['id'] );
+								$tpl4->set( "{url}", $config['http_home_url'] . "engine/download.php?id=" . $file['id'] );
+								$tpl4->set( "{seo-url}", $config['http_home_url'] . "indir/" . $file['id'] . "-" . $file['name'] );
+								$tpl4->set( "{size}", strtoupper( formatsize( @filesize( ROOT_DIR . '/uploads/files/' . $file['onserver'] ) ) ) );
+								// htaccess: RewriteRule ^indir/([0-9]+)-(.*)$ engine/download.php?id=$1 [L]
+								$_tmp = explode( ".", $file['name'] );
+								$tpl4->set( "{extension}", end( $_tmp ) ); unset( $_tmp );
+								$tpl4->set( "{name}", $file['name'] );
+								$tpl4->set( "{onserver}", $file['onserver'] );
+								$tpl4->set( "{author}", $file['author'] );
+								$tpl4->set( "{date}", date( "d.m.Y", $file['date'] ) );
+								$news_date = $file['date'];
+								$tpl4->copy_template = preg_replace_callback( "#\{date=(.+?)\}#i", "formdate", $tpl4->copy_template );
+								$tpl4->set( "{count}", $file['dcount'] );
+								$tpl4->compile( $attach['template'] );
+							}
 						}
 						if ( $_found > 0 ) {
 							$tpl->set( $matches[0], $tpl4->result[ $attach['template'] ] );
@@ -68,7 +72,7 @@
 				}
 			}
 		}
-		// Custom Attachments v1.1
+		// Custom Attachments v1.2
 ]]></add>
 		</operation>
 	</file>
