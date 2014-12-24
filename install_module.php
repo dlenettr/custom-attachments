@@ -1,7 +1,7 @@
 <?php
 /*
 =====================================================
- MWS Custom Attachments v1.1 - by MaRZoCHi
+ MWS Custom Attachments v1.2 - by MaRZoCHi
 -----------------------------------------------------
  Site: http://dle.net.tr/
 -----------------------------------------------------
@@ -61,7 +61,7 @@ HTML;
 }
 
 $module = array(
-	'name'	=> "MWS Custom Attachments v1.1",
+	'name'	=> "MWS Custom Attachments v1.2",
 	'desc'	=> "",
 	'id'	=> "",
 	'icon'	=> "",
@@ -82,7 +82,7 @@ if ( $_REQUEST['action'] == "install" ) {
 	$mod = new VQEdit();
 	$mod->backup = True;
 	$mod->bootup( $path = ROOT_DIR, $logging = True );
-	$mod->file( ROOT_DIR. "/install/xml/custom_attachments_11.xml" );
+	$mod->file( ROOT_DIR. "/install/xml/custom_attachments_12.xml" );
 	$mod->close();
 
 	mainTable_head( $lang['m08'] );
