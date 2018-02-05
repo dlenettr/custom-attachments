@@ -1,7 +1,7 @@
 <?php
 /*
 =============================================
- Name      : MWS Custom Attachments v1.3
+ Name      : MWS Custom Attachments v1.2
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
  Site      : https://dle.net.tr/
  License   : MIT License
@@ -82,7 +82,7 @@ function mainTable_foot($footer = "")
 }
 
 $module = array(
-    'name'	=> "MWS Custom Attachments v1.3",
+    'name'	=> "MWS Custom Attachments v1.2",
     'desc'	=> "",
     'id'	=> "",
     'icon'	=> "",
