@@ -1,4 +1,4 @@
-Custom Attachments v1.3
+Custom Attachments v1.2
 --------------
 * Yapımcı: Mehmet Hanoğlu ( dle.net.tr )
 * Tarih : 05.02.2018
